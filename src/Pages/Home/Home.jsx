@@ -13,7 +13,7 @@ const Home = () => {
       <div className=" max-w-[1480px] mt-[70px] mx-auto">
         <FindJob></FindJob>
       </div>
-      <div className=" max-w-[1480px] mx-auto mt-[70px]">
+      <div className=" max-w-[1480px] mx-auto mt-[100px]">
       <JobCategory></JobCategory>
       </div>
       
