@@ -2,16 +2,48 @@ import { FaGithub, FaRegUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-
+  const {loginUser, googleLogin, gitHubLogin} = useContext(AuthContext)
   
   const handleLogin = event =>{
     event.preventDefault()
     const from = event.target;
     const email = from.email.value;
     const password = from.password.value;
-    console.log(email, password);
+    loginUser(email, password)
+    .then(result=>{
+      toast.success('successfully logged!')
+      console.log(result);
+    })
+    .catch(error=>{
+      toast.error(error.message)
+      console.error(error);
+    })
+  };
+  const handleGoogle = () =>{
+    googleLogin()
+    .then(result=>{
+      toast.success('successfully logged!')
+      console.log(result);
+    })
+    .catch(error=>{
+      toast.error(error.message)
+      console.error(error);
+    })
+  }
+  const handleGithub = ()=>{
+    gitHubLogin()
+    .then((result) => {
+      toast.success('successfully logged!')
+      console.log(result);
+    }).catch((error) => {
+      toast.error(error.message)
+      console.log(error);
+    });
   }
   return (
     
@@ -57,10 +89,10 @@ const Login = () => {
           </form>
           <div className="divider px-10">OR</div>
           <div className=" mt-4 flex md:flex-row flex-col items-center justify-center gap-6">
-            <button className="btn hover:shadow-2xl hover:text-black border-blue-700 bg-transparent hover:bg-transparent btn-outline btn-wide text-4xl px-5">
+            <button onClick={handleGoogle} className="btn hover:shadow-2xl hover:text-black border-blue-700 bg-transparent hover:bg-transparent btn-outline btn-wide text-4xl px-5">
               <FcGoogle /> <span className=" text-xl">Google</span>
             </button>
-            <button className="btn hover:shadow-2xl bg-transparent hover:bg-transparent border-blue-700 hover:text-black btn-outline btn-wide text-4xl px-5">
+            <button onClick={handleGithub} className="btn hover:shadow-2xl bg-transparent hover:bg-transparent border-blue-700 hover:text-black btn-outline btn-wide text-4xl px-5">
               <FaGithub /> <span className=" text-xl">GitHub</span>
             </button>
           </div>
