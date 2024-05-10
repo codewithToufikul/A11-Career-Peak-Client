@@ -6,7 +6,11 @@ export default {
   ],
   theme: {
     
-    extend: {},
+    extend: {
+      fontFamily: {
+        model: ['Caveat', 'cursive']
+      }
+    },
   },
   plugins: [
     require('daisyui'),

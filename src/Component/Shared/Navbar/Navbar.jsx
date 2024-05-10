@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const [scrolling, setScrolling] = useState(false)
+  useEffect(()=>{
+    const handleScroll = () =>{
+      if(window.scrollY > 0){
+        setScrolling(true)
+      }
+      else{
+        setScrolling(false)
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return()=>{
+      window.removeEventListener("scroll", handleScroll)
+    }
+  },[])
+
     const navLink = 
     <>
     <li>
@@ -90,7 +107,7 @@ const Navbar = () => {
     </li>
   </>
     return (
-        <div className="navbar px-56 bg-transparent  mx-auto bg-base-100">
+        <div className={`navbar sticky top-0 z-50 lg:px-56 bg-blue-50   mx-auto ${scrolling? 'shadow-lg' : ''}`}>
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
