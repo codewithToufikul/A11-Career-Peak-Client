@@ -57,7 +57,7 @@ const Register = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="hero-content my-10 mt-16 m-5 mx-auto ">
+      <div className="hero-content max-w-full  pt-16 p-5 mx-auto " style={{backgroundImage: 'url(https://i.ibb.co/4RQtvq7/Friendly-Ones-Friendly-Blobs.png)'}}>
         <div className="relative card max-w-3xl p-12 w-full bg-blue-50">
           <div className=" absolute top-[-50px] rounded-full border-[10px] border-white p-5 left-[42%] bg-[#378CE7]">
             <p className=" text-white text-5xl">

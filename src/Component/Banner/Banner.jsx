@@ -1,4 +1,5 @@
 import bannerBg from "../../assets/bg-banner.svg";
+import './style.css'
 
 const Banner = () => {
   return (
@@ -6,7 +7,7 @@ const Banner = () => {
       style={{ backgroundImage: `url(${bannerBg})` }}
       className="bg-cover py-10 dark:text-gray-800"
     >
-      <div className="container flex flex-col justify-between px-16 p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row ">
+      <div className="container flex  flex-col justify-between px-16 p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row ">
         <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-lg xl:max-w-xl lg:text-left">
             <p className=" text-4xl mb-3 font-bold text-blue-500 font-model">Find Talent</p>
           <h1 className="  text-5xl font-bold sm:text-6xl">
@@ -36,7 +37,7 @@ const Banner = () => {
           <img
             src="https://i.ibb.co/0n77PXh/1693971265825.png"
             alt=""
-            className="object-contain  "
+            className=" z-0 object-contain slow-animation "
           />
         </div>
       </div>
