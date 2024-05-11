@@ -13,6 +13,7 @@ import Register from './Pages/Register/Register';
 import AuthProvider from './AuthProvider/AuthProvider';
 import AllJobs from './Pages/AllJobs/AllJobs';
 import AppliedJobs from './Pages/AppliedJobs/AppliedJobs';
+import AddJob from './Pages/AddJob/AddJob';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/appliedjobs",
         element: <AppliedJobs></AppliedJobs>
+      },
+      {
+        path: "/addjob",
+        element:<AddJob></AddJob>
       }
     ]
   },

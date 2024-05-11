@@ -93,7 +93,7 @@ const Navbar = () => {
            ? "pending"
            : "text-lg mr-2 hover:underline font-semibold"
        }
-       to="/addspot"
+       to="/addjob"
      >
       Add A Job
      </NavLink>
