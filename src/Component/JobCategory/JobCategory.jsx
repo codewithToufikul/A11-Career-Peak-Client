@@ -1,7 +1,9 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import JobCard from '../JobCard/JobCard';
 
-const JobCategory = () => {
+const JobCategory = ({jobs}) => {
+    console.log(jobs);
     return (
         <div className=' '>
             <div className=' flex flex-col items-center mb-16'>
@@ -18,7 +20,11 @@ const JobCategory = () => {
                 </TabList>
 
                 <TabPanel>
-                    <h2>Any content 1</h2>
+                    <div className=' grid grid-cols-3 gap-3'>
+                        {
+                            jobs.map(job=> <JobCard key={job._id} job={job}></JobCard>)
+                        }
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     <h2>Any content 2</h2>

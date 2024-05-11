@@ -7,33 +7,33 @@ import "react-datepicker/dist/react-datepicker.css";
 const AddJob = () => {
     const {users} = useContext(AuthContext);
     const [startDate, setStartDate] = useState(new Date());
+    const [applyDate, setApplyDate] = useState(new Date());
+    
 
     const handleAddTourist =event =>{
         event.preventDefault()
         const form = event.target;
-        const spotName = form.spotName.value;
-        const country = form.country.value;
-        const location = form.location.value;
+        const title = form.title.value;
+        const jobCategory = form.jobCategory.value;
+        const salary = form.salary.value;
         const description = form.description.value;
-        const cost = form.cost.value;
-        const seasonality = form.seasonality.value;
-        const time = form.time.value;
-        const visitors = form.visitors.value;
         const email = form.email.value;
         const name = form.name.value;
         const photo = form.photo.value;
+        const applyNumber = form.applyNumber.value;
+        const postingDate = startDate.toISOString().split('T')[0];
+        const applyTime = applyDate.toISOString().split('T')[0];
         const touristSpot = {
-          spotName: spotName,
-          country: country,
-          location: location,
+            title: title ,
+          jobCategory: jobCategory,
+          salary: salary,
           description: description,
-          cost: cost,
-          seasonality: seasonality,
-          time: time,
-          visitors: visitors,
           email: email,
           name: name,
           photo: photo,
+          postingDate: postingDate,
+          applyDate: applyTime,
+          applyNumber: applyNumber
     
         }
         console.log(touristSpot);
@@ -41,14 +41,14 @@ const AddJob = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="max-w-[1480px] mx-auto">
-      <div className="bg-blue-50 lg:px-24 px-8 py-16 rounded-2xl">
+      <div className="max-w-[1080px] mx-auto">
+      <div className="bg-blue-50 lg:px-24 px-8 py-10 m-5 rounded-2xl">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-5">
-          Add a <span className=" text-blue-400">Job</span>
+          Add A <span className=" text-blue-400">Job</span>
         </h2>
         <form onSubmit={handleAddTourist}>
 
-          <div className="md:flex md:mb-8">
+          <div className="md:flex md:mb-4">
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text text-base">Job Title</span>
@@ -56,9 +56,9 @@ const AddJob = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  name="spotName"
+                  name="title"
                   required
-                  placeholder="tourist spot name"
+                  placeholder="job title"
                   className="input input-bordered w-full"
                 />
               </label>
@@ -67,7 +67,7 @@ const AddJob = () => {
               <label className="label">
                 <span className="label-text text-base"> Job Category</span>
               </label>
-              <select name="country" required className="select select-bordered w-full">
+              <select name="jobCategory" required className="select select-bordered w-full">
                 <option disabled selected>
                   Select Job Category
                 </option>
@@ -78,7 +78,7 @@ const AddJob = () => {
               </select>
             </div>
           </div>
-          <div className="md:flex md:mb-8">
+          <div className="md:flex md:mb-4">
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text">User Email</span>
@@ -109,7 +109,7 @@ const AddJob = () => {
             </div>
           </div>
           {/* form supplier row */}
-          <div className="md:flex md:mb-8">
+          <div className="md:flex md:mb-4">
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text text-base">Salary range</span>
@@ -117,7 +117,7 @@ const AddJob = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  name="cost"
+                  name="salary"
                   required
                   placeholder=" salary range"
                   className="input input-bordered w-full"
@@ -128,43 +128,41 @@ const AddJob = () => {
               <label className="label">
                 <span className="label-text text-base"> Job Posting Date</span>
               </label>
-              <ReactDatePicker className=" w-full py-3 px-5 rounded-lg" selected={startDate} onChange={(date) => setStartDate(date)} />
+              <ReactDatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  className="input input-bordered w-full"
+                  readOnly
+                />
             </div>
           </div>
-          <div className="md:flex md:mb-8">
+          <div className="md:flex md:mb-4">
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text text-base">Travel Time</span>
+                <span className="label-text text-base">Application Deadline</span>
               </label>
-              <select name="time" required className="select select-bordered w-full ">
-                <option disabled selected>
-                  Travel Time
-                </option>
-                <option>3 days</option>
-                <option>7 days</option>
-
-                <option>15 days</option>
-              </select>
+              <ReactDatePicker className=" w-full py-3 px-5 rounded-lg" selected={applyDate} onChange={(date) => setApplyDate(date)} />
             </div>
             <div className="form-control md:w-1/2 md:ml-4">
               <label className="label">
                 <span className="label-text text-base">
-                  Tota Visitors Per Year
+                  Applied Jobs Number
                 </span>
               </label>
               <label className="input-group">
                 <input
                   type="text"
-                  name="visitors"
+                  name="applyNumber"
                   required
-                  placeholder="visitors number"
+                  value={0}
+                  placeholder="applied number"
                   className="input input-bordered w-full"
                 />
               </label>
             </div>
           </div>
 
-          <div className=" mb-8">
+          <div className=" mb-4">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Photo URL</span>
@@ -180,10 +178,20 @@ const AddJob = () => {
               </label>
             </div>
           </div>
+          <div className=" mb-3">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Job Description</span>
+              </label>
+              <label className="input-group">
+                <textarea name="description" placeholder=" Enter some job details" className=" p-5 w-full h-20 rounded-xl" id=""></textarea>
+              </label>
+            </div>
+          </div>
 
           <input
             type="submit"
-            value="Add Spot"
+            value="Add Job"
             className="btn btn-block bg-blue-400 text-lg text-white"
           />
         </form>
