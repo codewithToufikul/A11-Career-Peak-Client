@@ -1,16 +1,17 @@
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 const AddJob = () => {
     const {users} = useContext(AuthContext);
     const [startDate, setStartDate] = useState(new Date());
     const [applyDate, setApplyDate] = useState(new Date());
     
 
-    const handleAddTourist =event =>{
+    const handleAddJob =  async event =>{
         event.preventDefault()
         const form = event.target;
         const title = form.title.value;
@@ -23,30 +24,53 @@ const AddJob = () => {
         const applyNumber = form.applyNumber.value;
         const postingDate = startDate.toISOString().split('T')[0];
         const applyTime = applyDate.toISOString().split('T')[0];
-        const touristSpot = {
-            title: title ,
+        const AddedJob = {
+          jobTitle: title ,
           jobCategory: jobCategory,
-          salary: salary,
-          description: description,
-          email: email,
-          name: name,
-          photo: photo,
-          postingDate: postingDate,
-          applyDate: applyTime,
-          applyNumber: applyNumber
+          salaryRange: salary,
+          jobDescription: description,
+          userEmail: email,
+          userName: name,
+          jobBannerImg: photo,
+          jobPostingDate: postingDate,
+          applicationDeadline: applyTime,
+          jobApplicantsNumber: applyNumber
     
         }
-        console.log(touristSpot);
+        try{
+          const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jobs`, AddedJob)
+          console.log(data);
+          toast.success('Successfully Added !')
+      } catch (err) {
+          console.log(err);
+          toast.error('Added failed !')
+      }
     }
   return (
     <div>
       <Navbar></Navbar>
+      <div
+          className="hero bg-top"
+          style={{
+            backgroundImage:
+              "url(https://i.ibb.co/sVGH3tK/technology-featured-970x276.jpg)",
+          }}
+        >
+          <div className="hero-overlay bg-opacity-60"></div>
+          <div className="hero-content text-center text-neutral-content">
+            <div className="max-w-md py-24 z-20">
+              <h1 className="mb-5 text-5xl font-bold">Add Your Job</h1>
+              <p className="mb-5">
+              </p>
+            </div>
+          </div>
+        </div>
       <div className="max-w-[1080px] mx-auto">
       <div className="bg-blue-50 lg:px-24 px-8 py-10 m-5 rounded-2xl">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-5">
           Add A <span className=" text-blue-400">Job</span>
         </h2>
-        <form onSubmit={handleAddTourist}>
+        <form onSubmit={handleAddJob}>
 
           <div className="md:flex md:mb-4">
             <div className="form-control md:w-1/2">

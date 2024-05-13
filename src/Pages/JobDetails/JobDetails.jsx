@@ -5,6 +5,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const JobDetails = () => {
     const {users} = useContext(AuthContext);
@@ -30,6 +31,16 @@ const JobDetails = () => {
     const ApplicationEmail = form.email.value;
     const ApplicationName = form.name.value;
     const resume = form.resume.value;
+    const today = new Date();
+    const deadline = new Date(applicationDeadline);
+    if (deadline < today) {
+      toast.error('Deadline Over !')
+      return;
+  }
+  if(ApplicationEmail == userEmail ){
+    toast.error('you cant apply your job ')
+    return;
+  }
     const applyData ={
         userName,
         userEmail,
@@ -49,8 +60,10 @@ const JobDetails = () => {
     try{
         const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/applyjob`, applyData)
         console.log(data);
+        toast.success('job apply success')
     } catch (err) {
         console.log(err);
+        toast.error('apply field')
     }
   }
   return (

@@ -37,7 +37,7 @@ const JobCard = ({ job }) => {
           </p>
           </div>
           <div className=" flex items-center gap-1">
-            <p className=" text-lg text-blue-500">
+            <p className=" text-lg text-red-500">
               <MdOutlineDateRange />
             </p>
             <p>
