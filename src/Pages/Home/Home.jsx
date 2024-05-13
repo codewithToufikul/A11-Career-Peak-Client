@@ -1,11 +1,19 @@
-import { useLoaderData } from "react-router-dom";
 import Banner from "../../Component/Banner/Banner";
 import FindJob from "../../Component/FindJob/FindJob";
 import JobCategory from "../../Component/JobCategory/JobCategory";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-   const jobs = useLoaderData();
+  const [jobs, setJobs] = useState([])
+useEffect(()=>{
+  const getData = async () =>{
+    const {data} = await  axios(`${import.meta.env.VITE_API_URL}/jobs`, )
+    setJobs(data)
+  }
+  getData()
+},[])
 
   return (
     <div className=" relative">

@@ -58,8 +58,8 @@ const Register = () => {
     <div>
       <Navbar></Navbar>
       <div className="hero-content max-w-full  pt-16 p-5 mx-auto " style={{backgroundImage: 'url(https://i.ibb.co/4RQtvq7/Friendly-Ones-Friendly-Blobs.png)'}}>
-        <div className="relative card max-w-3xl p-12 w-full bg-blue-50">
-          <div className=" absolute top-[-50px] rounded-full border-[10px] border-white p-5 left-[42%] bg-[#378CE7]">
+        <div className="relative card max-w-3xl p-6 md:p-12 w-full bg-blue-50">
+          <div className=" absolute top-[-50px] rounded-full border-[10px] border-white p-3 md:p-5 left-[38%] md:left-[42%] bg-[#378CE7]">
             <p className=" text-white text-5xl">
               <FaRegUser />
             </p>
@@ -67,7 +67,7 @@ const Register = () => {
           <h1 id="myDIV" className=" mt-4 text-4xl text-center font-semibold">
             Create Account
           </h1>
-          <form onSubmit={handleRegister} className="card-body">
+          <form onSubmit={handleRegister} className="card-body p-0 py-3">
             <div className="form-control">
               <input
                 type="text"

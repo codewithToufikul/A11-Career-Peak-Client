@@ -11,6 +11,8 @@ import AuthProvider from "./AuthProvider/AuthProvider";
 import AllJobs from "./Pages/AllJobs/AllJobs";
 import AppliedJobs from "./Pages/AppliedJobs/AppliedJobs";
 import AddJob from "./Pages/AddJob/AddJob";
+import JobDetails from "./Pages/JobDetails/JobDetails";
+import MyJob from "./Pages/MyJob/MyJob";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/jobs`),
       },
       {
         path: "/login",
@@ -43,6 +44,15 @@ const router = createBrowserRouter([
         path: "/addjob",
         element: <AddJob></AddJob>,
       },
+      {
+        path: "/jobdetails/:id",
+        element: <JobDetails></JobDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/jobs/${params.id}`)
+      },
+      {
+        path: "myjobs",
+        element: <MyJob></MyJob>,
+      }
     ],
   },
 ]);

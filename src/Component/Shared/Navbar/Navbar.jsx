@@ -109,7 +109,7 @@ const Navbar = () => {
            ? "pending"
            : "text-lg mr-2 hover:underline font-semibold"
        }
-       to="/addspot"
+       to="/myjobs"
      >
       My Jobs
      </NavLink>
@@ -124,7 +124,7 @@ const Navbar = () => {
             ? "pending"
             : " text-lg mr-2 hover:underline  font-semibold"
         }
-        to="/mylist"
+        to="/myjobs"
       >
        Blogs
       </NavLink>

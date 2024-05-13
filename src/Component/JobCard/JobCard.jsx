@@ -1,6 +1,7 @@
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
   const {
@@ -11,6 +12,7 @@ const JobCard = ({ job }) => {
     salaryRange,
     jobApplicantsNumber,
     jobCategory,
+    _id
   } = job;
   return (
     <div className=" border-[1px] hover:shadow-lg rounded-md  bg-base-100 ">
@@ -60,7 +62,7 @@ const JobCard = ({ job }) => {
             Salary:{" "}
             <span className=" font-medium text-2xl ">${salaryRange}</span>
           </h3>
-          <button className=" text-lg text-blue-500 border-2 p-2 rounded-full px-3 border-blue-300 flex items-center gap-2">View Details <span className=" text-xl "><IoArrowForwardSharp /></span></button>
+          <Link to={`/jobdetails/${_id}`} className=" text-lg text-blue-500 border-2 p-2 rounded-full px-3 border-blue-300 flex items-center gap-2">View Details <span className=" text-xl "><IoArrowForwardSharp /></span></Link>
         </div>
       </div>
     </div>
