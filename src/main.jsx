@@ -16,6 +16,7 @@ import MyJob from "./Pages/MyJob/MyJob";
 import UpdateJob from "./Pages/UpdateJob/UpdateJob";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import Blogs from "./Pages/Blogs/Blogs";
+import BlogDetails from "./Pages/Blogs/BlogDetails/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
+      },
+      {
+        path:"/blogdetail/:id",
+        element: <BlogDetails></BlogDetails>,
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/blogs/${params.id}`)
       }
     ],
   },
