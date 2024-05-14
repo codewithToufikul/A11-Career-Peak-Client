@@ -6,6 +6,8 @@ import { MdDeleteForever, MdOutlineDateRange } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const MyJob = () => {
   const { users } = useContext(AuthContext);
@@ -19,6 +21,30 @@ const MyJob = () => {
     };
     getData();
   }, [users]);
+  const handleDeleteJob = (_id) =>{
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be delete this job !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+  }).then((result)=>{
+    if(result.isConfirmed){
+      fetch(`${import.meta.env.VITE_API_URL}/jobs/${_id}`,{
+        method: 'DELETE'
+      })
+      .then(res=> res.json())
+      .then(data=>{
+        console.log(data);
+      })
+      const remaining = jobs.filter(job=> job._id !== _id);
+      setJobs(remaining)
+      toast.success('successfully deleted!')
+    }
+  })
+  }
   return (
     <div>
       <Navbar></Navbar>
@@ -131,7 +157,7 @@ const MyJob = () => {
                       >
                         <FiEdit />
                       </Link>
-                      <button className="btn btn-outline btn-error text-lg md:text-[26px]">
+                      <button onClick={()=>handleDeleteJob(job._id)} className="btn btn-outline btn-error text-lg md:text-[26px]">
                         <MdDeleteForever />
                       </button>
                     </div>

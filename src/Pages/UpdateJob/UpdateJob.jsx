@@ -2,10 +2,14 @@ import { useState } from "react";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const UpdateJob = () => {
+  const navigete = useNavigate()
     const job = useLoaderData()
+    const {_id} = job;
     const [startDate, setStartDate] = useState(new Date());
     const [applyDate, setApplyDate] = useState(new Date());
     
@@ -21,9 +25,9 @@ const UpdateJob = () => {
         const name = form.name.value;
         const photo = form.photo.value;
         const applyNumber = form.applyNumber.value;
-        const postingDate = startDate;
-        const applyTime = applyDate;
-        const touristSpot = {
+        const postingDate = startDate.toISOString().split('T')[0];
+        const applyTime = applyDate.toISOString().split('T')[0];
+        const updatedJob = {
           jobTitle: title ,
           jobCategory: jobCategory,
           salaryRange: salary,
@@ -36,7 +40,16 @@ const UpdateJob = () => {
           jobApplicantsNumber: applyNumber
     
         }
-        console.log(touristSpot);
+        try{
+          const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/jobs/${_id}`, updatedJob)
+          console.log(data);
+          toast.success('Successfully Update !')
+          navigete('/myjobs')
+      } catch (err) {
+          console.log(err);
+          toast.error('Update failed !')
+      }
+        
     }
     return (
         <div>

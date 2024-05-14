@@ -5,7 +5,9 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const AddJob = () => {
+  const navigate = useNavigate()
     const {users} = useContext(AuthContext);
     const [startDate, setStartDate] = useState(new Date());
     const [applyDate, setApplyDate] = useState(new Date());
@@ -40,7 +42,9 @@ const AddJob = () => {
         try{
           const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jobs`, AddedJob)
           console.log(data);
+          navigate('/myjobs')
           toast.success('Successfully Added !')
+         
       } catch (err) {
           console.log(err);
           toast.error('Added failed !')
