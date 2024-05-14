@@ -1,6 +1,6 @@
 import { FaGithub, FaRegUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const {loginUser, googleLogin, gitHubLogin} = useContext(AuthContext)
-  
+  const location = useLocation();
+  const navigete = useNavigate();
   const handleLogin = event =>{
     event.preventDefault()
     const from = event.target;
@@ -17,6 +18,7 @@ const Login = () => {
     loginUser(email, password)
     .then(result=>{
       toast.success('successfully logged!')
+      navigete(location?.state ? location.state : '/')
       console.log(result);
     })
     .catch(error=>{
@@ -28,6 +30,7 @@ const Login = () => {
     googleLogin()
     .then(result=>{
       toast.success('successfully logged!')
+      navigete(location?.state ? location.state : '/')
       console.log(result);
     })
     .catch(error=>{
@@ -39,6 +42,7 @@ const Login = () => {
     gitHubLogin()
     .then((result) => {
       toast.success('successfully logged!')
+      navigete(location?.state ? location.state : '/')
       console.log(result);
     }).catch((error) => {
       toast.error(error.message)
@@ -62,7 +66,7 @@ const Login = () => {
           <p className=" text-base text-center mt-3">
             Enter username and password to log on:
           </p>
-          <form onSubmit={handleLogin} className="card-body p-0 m-0">
+          <form onSubmit={handleLogin} className="card-body lg:p-5 m-0">
             <div className="form-control">
               <input
                 type="email"

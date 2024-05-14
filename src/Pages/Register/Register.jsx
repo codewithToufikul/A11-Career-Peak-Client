@@ -1,15 +1,17 @@
 import { FaGithub, FaRegUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
 
 const Register = () => {
   const {creatUser, updateUser, googleLogin, gitHubLogin} = useContext(AuthContext)
-
+  const [passError, setPassError] = useState('')
+  const location = useLocation();
+  const navigete = useNavigate();
   const handleRegister = (event) => {
     event.preventDefault();
     const from = event.target;
@@ -17,10 +19,23 @@ const Register = () => {
     const email = from.email.value;
     const password = from.password.value;
     const photo = from.photo.value;
+    if(password < 6){
+      setPassError('please provide more then 6 character password');
+      return;
+  }
+    if(!/[A-Z]/.test(password)){
+      setPassError('please must contain at least one uppercase letter')
+      return;
+    }
+    if(!/[a-z]/.test(password)){
+      setPassError('please must contain at least one lowercase letter')
+      return;
+    }
     creatUser(email, password)
     .then((result)=>{
       console.log(result);
       toast.success('Successfully Register!')
+      navigete(location?.state ? location.state : '/')
       updateUser(name, photo)
       .then(() => {
       }).catch((error) => {
@@ -37,6 +52,7 @@ const Register = () => {
     googleLogin()
     .then(result=>{
       toast.success('successfully Register!')
+      navigete(location?.state ? location.state : '/')
       console.log(result);
     })
     .catch(error=>{
@@ -48,6 +64,7 @@ const Register = () => {
     gitHubLogin()
     .then((result) => {
       toast.success('successfully logged!')
+      navigete(location?.state ? location.state : '/')
       console.log(result);
     }).catch((error) => {
       toast.error(error.message)
@@ -95,6 +112,9 @@ const Register = () => {
                 required
               />
             </div>
+            {
+                  passError ? <span className=" text-[13px] text-red-500">{passError}</span> : ''
+            }
             <div className="relative form-control">
               <input
                 type="url"

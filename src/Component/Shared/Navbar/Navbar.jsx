@@ -161,8 +161,12 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal mx-10">
       {navLink}
-      <li><button
-            className={`     rounded-full `}
+
+    </ul>
+  </div>
+  <div className="navbar-end  lg:w-fit">
+  <button
+            className={`mr-3 md:m-5 rounded-full `}
             onClick={handleTheme}
           >
             {theme == "light" ? (
@@ -177,10 +181,7 @@ const Navbar = () => {
                 <MdOutlineDarkMode />
               </p>
             )}
-          </button></li>
-    </ul>
-  </div>
-  <div className="navbar-end  lg:w-fit">
+          </button>
   {users ? (
           <div className=" md:pr-5 dropdown z-40 dropdown-hover">
             <div
@@ -210,8 +211,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-        ) : ''}
-    <Link to="/login" className="btn md:px-8 md:text-xl text-white  rounded-xs bg-[#67C6E3]">Login</Link>
+        ) :  <Link to="/login" className="btn md:px-8 md:text-xl text-white  rounded-xs bg-[#67C6E3]">Login</Link>}
   </div>
 </div>
     );

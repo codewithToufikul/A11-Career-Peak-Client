@@ -75,7 +75,7 @@ const MyJob = () => {
           </h1>
           <p className=" text-sm md:text-lg mt-3">
             Are you ready to take the next step in your career journey? Look no
-            further! Below, you'll find the details of the .
+            further! Below, you will find the details of the .
           </p>
         </div>
         <div className="overflow-x-auto my-8">
