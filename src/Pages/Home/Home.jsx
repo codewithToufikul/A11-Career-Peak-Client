@@ -1,4 +1,6 @@
 import Banner from "../../Component/Banner/Banner";
+import ClientReview from "../../Component/ExtraSection/ClientReview/ClientReview";
+import NewaLatter from "../../Component/ExtraSection/NewaLatter/NewaLatter";
 import FindJob from "../../Component/FindJob/FindJob";
 import JobCategory from "../../Component/JobCategory/JobCategory";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
@@ -27,7 +29,12 @@ useEffect(()=>{
       <div className=" max-w-[1480px] mx-auto mt-[100px]">
       <JobCategory jobs={jobs} ></JobCategory>
       </div>
-      
+      <div>
+        <ClientReview></ClientReview>
+      </div>
+      <div>
+        <NewaLatter></NewaLatter>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const JobCard = ({ job }) => {
+  const {users} =  useContext(AuthContext);
+  const navigate = useNavigate()
   const {
     userName,
     jobTitle,
@@ -14,6 +19,13 @@ const JobCard = ({ job }) => {
     jobCategory,
     _id
   } = job;
+  const handleViewDetails = () => {
+    if (!users) {
+      toast.error('Please login first and view details!');
+    } else {
+     navigate(`/jobdetails/${_id}`)
+    }
+  };
   return (
     <div className=" border-[1px] hover:shadow-lg rounded-md  bg-base-100 ">
       <div className="card-body">
@@ -62,7 +74,7 @@ const JobCard = ({ job }) => {
             Salary:{" "}
             <span className=" font-medium text-2xl ">${salaryRange}</span>
           </h3>
-          <Link to={`/jobdetails/${_id}`} className=" text-lg text-blue-500 border-2 p-2 rounded-full px-3 border-blue-300 flex items-center gap-2">View Details <span className=" text-xl "><IoArrowForwardSharp /></span></Link>
+          <Link to={`/jobdetails/${_id}`} onClick={handleViewDetails} className=" text-lg text-blue-500 border-2 p-2 rounded-full px-3 border-blue-300 flex items-center gap-2">View Details <span className=" text-xl "><IoArrowForwardSharp /></span></Link>
         </div>
       </div>
     </div>

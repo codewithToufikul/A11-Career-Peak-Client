@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
 import { MdOutlineDateRange } from "react-icons/md";
 import { PiHandbagSimpleFill } from "react-icons/pi";
 import { FaMagnifyingGlass, FaMoneyBill1Wave } from "react-icons/fa6";
 import { GrStatusGoodSmall } from "react-icons/gr";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const AllJobs = () => {
     const [jobs, setJobs] = useState([])
+    const navigate = useNavigate()
+    const {users} = useContext(AuthContext)
   useEffect(()=>{
     const getData = async () =>{
       const {data} = await  axios(`${import.meta.env.VITE_API_URL}/jobs`, )
@@ -16,6 +20,13 @@ const AllJobs = () => {
     }
     getData()
   },[])
+  const handleViewDetails = () => {
+    if (!users) {
+      toast.error('Please login first and view details!');
+    } else {
+     navigate(`/jobdetails/${_id}`)
+    }
+  };
   return (
     <div>
       <Navbar></Navbar>
@@ -122,7 +133,7 @@ const AllJobs = () => {
                   </th>
                   <td></td>
                   <td>
-                    <Link to={`/jobdetails/${job._id}`} className=" btn btn-outline text-lg text-blue-300">
+                    <Link onClick={handleViewDetails} to={`/jobdetails/${job._id}`} className=" btn btn-outline text-lg text-blue-300">
                       Details
                     </Link>
                   </td>
