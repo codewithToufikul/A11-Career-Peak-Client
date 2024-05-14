@@ -32,7 +32,7 @@ useEffect(()=>{
       <div>
         <ClientReview></ClientReview>
       </div>
-      <div>
+      <div className=" mb-10">
         <NewaLatter></NewaLatter>
       </div>
     </div>

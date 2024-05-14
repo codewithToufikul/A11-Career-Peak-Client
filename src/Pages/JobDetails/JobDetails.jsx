@@ -6,6 +6,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useQuery } from "react-query";
 
 const JobDetails = () => {
     const {users} = useContext(AuthContext);
@@ -24,6 +25,15 @@ const JobDetails = () => {
     jobDescription,
     userEmail
   } = job;
+  const { data: jobs = [], isLoading } = useQuery({
+    queryFn: () => getData(),
+    queryKey: ["jobs"],
+  });
+
+  const getData = async () => {
+    const { data } = await axios(`http://localhost:5000/applyjob`);
+    return data;
+  };
   const handleConfirmApply = async event => {
     event.preventDefault();
     const form = event.target;
@@ -41,6 +51,10 @@ const JobDetails = () => {
     toast.error('you cant apply your job ')
     return;
   }
+  if (jobs.find(job => job.jobId === jobId && job.ApplicationEmail == ApplicationEmail)) {
+    toast.error('Already applied!');
+    return;
+}
     const applyData ={
         userName,
         userEmail,

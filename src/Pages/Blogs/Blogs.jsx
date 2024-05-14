@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
-import axios from "axios";
 import BlogCard from "./BlogCard";
 
 const Blogs = () => {

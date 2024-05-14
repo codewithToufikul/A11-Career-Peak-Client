@@ -1,6 +1,6 @@
 const NewaLatter = () => {
     return (
-        <div className=" space-y-5 md:space-y-10 py-20 bg-cover bg-no-repeat rounded-3xl md:mb-0 mb-5 md:rounded-t-3xl max-w-[1480px] mx-auto" style={ {backgroundImage: 'url(https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/h6-footer.jpg)'}}>
+        <div className=" space-y-5 md:space-y-10 py-20 bg-cover bg-no-repeat  md:mb-0 mb-5 rounded-3xl max-w-[1480px] mx-auto" style={ {backgroundImage: 'url(https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/h6-footer.jpg)'}}>
           <div className=" md:space-y-2">
           <h1 className="text-2xl md:text-4xl text-center text-white">Subscribe Our Newsletter!</h1>
             <p className=" text-xs md:text-sm text-white  text-center">Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.</p>

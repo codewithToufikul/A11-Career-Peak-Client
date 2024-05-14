@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
-  const {title, writer, date, blogimage, full_blog, _id} = blog
+  const {title, writer, date, blogimage, full_blog, _id} = blog;
   return (
     <div className="card  bg-base-100 shadow-xl">
       <figure className=" h-[400px] w-full">

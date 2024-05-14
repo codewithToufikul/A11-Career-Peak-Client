@@ -25,8 +25,8 @@ const UpdateJob = () => {
         const name = form.name.value;
         const photo = form.photo.value;
         const applyNumber = form.applyNumber.value;
-        const postingDate = startDate.toISOString().split('T')[0];
-        const applyTime = applyDate.toISOString().split('T')[0];
+        const postingDate = form.jobPostingDate.value;
+        const applyTime = form.applicationDeadline.value;
         const updatedJob = {
           jobTitle: title ,
           jobCategory: jobCategory,
@@ -170,11 +170,19 @@ const UpdateJob = () => {
                                     Job Posting Date
                                   </span>
                                 </label>
-                                <ReactDatePicker
-                                  selected={new Date(job.jobPostingDate)}
-                                  onChange={(date) => setStartDate(date)}
-                                  className="input input-bordered w-full"
-                                />
+                                <input
+                                    type="date"
+                                    name="jobPostingDate"
+                                    required
+                                    defaultValue={job.jobPostingDate}
+                                    placeholder="applied number"
+                                    className="input input-bordered w-full"
+                                  />
+                                {/* <ReactDatePicker
+  className="border-2 w-full py-3 px-5 rounded-lg"
+  selected={applyDate}
+  onChange={(date) => setApplyDate(date)}
+/> */}
                               </div>
                             </div>
                             <div className="md:flex md:mb-4">
@@ -184,11 +192,21 @@ const UpdateJob = () => {
                                     Application Deadline
                                   </span>
                                 </label>
-                                <ReactDatePicker
-                                  className=" border-2 w-full py-3 px-5 rounded-lg"
-                                  selected={new Date(job.applicationDeadline)}
-                                  onChange={(date) => setApplyDate(date)}
-                                />
+                                <input
+                                    type="date"
+                                    name="applicationDeadline"
+                                    required
+                                    defaultValue={job.applicationDeadline}
+                                    placeholder="applied number"
+                                    className="input input-bordered w-full"
+                                  />
+
+                                {/* <ReactDatePicker
+  // selected={startDate}
+  onChange={(date) => setStartDate(date)}
+  className="input input-bordered w-full"
+  placeholderText={job.applicationDeadline}
+/> */}
                               </div>
                               <div className="form-control md:w-1/2 md:ml-4">
                                 <label className="label">

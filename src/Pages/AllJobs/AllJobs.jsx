@@ -13,12 +13,18 @@ const AllJobs = () => {
     const [jobs, setJobs] = useState([])
     const navigate = useNavigate()
     const {users} = useContext(AuthContext)
+    const [search, setSearch] = useState('')
+    const apiUrl = import.meta.env.VITE_API_URL
   useEffect(()=>{
-    const getData = async () =>{
-      const {data} = await  axios(`${import.meta.env.VITE_API_URL}/jobs`, )
-      setJobs(data)
-    }
-    getData()
+    const getData = async () => {
+      try {
+        const { data } = await axios(`${apiUrl}/jobs`);
+        setJobs(data);
+      } catch (error) {
+        console.error("Error occurred while fetching data:", error);
+      }
+    };
+    getData();
   },[])
   const handleViewDetails = () => {
     if (!users) {
@@ -27,6 +33,22 @@ const AllJobs = () => {
      navigate(`/jobdetails/${_id}`)
     }
   };
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const text = e.target.search.value;
+    setSearch(text);
+  };
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobss?search=${search}`);
+        setJobs(data);
+      } catch (error) {
+        console.error("Error occurred while fetching data:", error);
+      }
+    };
+    getData();
+  }, [search]);
   return (
     <div>
       <Navbar></Navbar>
@@ -55,10 +77,11 @@ const AllJobs = () => {
             <p className=" text-4xl text-blue-400"><FaMagnifyingGlass /></p>
             <h1 className="text-2xl text-center font-semibold mb-5 dark:text-blue-400"> Search By Job Title</h1>
             </div>
-          <div className="join">
-  <input className="input input-bordered join-item border-blue-100" placeholder="Job Title"/>
-  <button className="btn join-item bg-blue-100">Search</button>
-</div>
+            <form onSubmit={handleSearch} className="join">
+  <input name="search" className="input input-bordered join-item border-blue-100" placeholder="Job Title"/>
+  <button type="submit" className="btn join-item bg-blue-100">Search</button>
+</form>
+
           </div>
         <div className="overflow-x-auto mt-12">
           <table className="table">
@@ -88,6 +111,7 @@ const AllJobs = () => {
                   </div>
                 </th>
                 <th className=" text-xl">Salary range</th>
+                <th className=" text-xl">Category</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -131,6 +155,11 @@ const AllJobs = () => {
                       </p>
                     </div>
                   </th>
+                  <td>
+                  <p className={`${job.jobCategory === "Hybrid" ? ' bg-green-200 p-1 text-center rounded-full font-semibold text-green-500' : ''}${job.jobCategory === "Remote" ? ' bg-pink-200 p-1 text-center rounded-full font-semibold text-pink-500' : ''}${job.jobCategory === "On Site" ? ' bg-yellow-100 p-1 text-center rounded-full font-semibold text-blue-500' : ''}${job.jobCategory === "Part Time" ? ' bg-blue-100 p-1 text-center rounded-full font-semibold text-blue-500' : ''}`}>
+  {job.jobCategory}
+</p>
+                  </td>
                   <td></td>
                   <td>
                     <Link onClick={handleViewDetails} to={`/jobdetails/${job._id}`} className=" btn btn-outline text-lg text-blue-300">
