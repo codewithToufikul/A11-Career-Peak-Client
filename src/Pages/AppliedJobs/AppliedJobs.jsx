@@ -33,7 +33,7 @@ const AppliedJobs = () => {
     return data;
   };
 
-  const nyJob = jobs.filter((job) => job.ApplicationEmail == users.email);
+  const nyJob = jobs.filter((job) => job.ApplicationEmail === users.email);
 
   useEffect(() => {
     setAppliedjobs(nyJob);
@@ -44,13 +44,25 @@ const AppliedJobs = () => {
   };
 
   const handleRemote = () => {
-    const remote = nyJob.filter((job) => job.jobCategory == "Remote");
+    const remote = nyJob.filter((job) => job.jobCategory === "Remote");
+    setAppliedjobs(remote);
+  };
+  const handleOn = () => {
+    const remote = nyJob.filter((job) => job.jobCategory === "On Site");
+    setAppliedjobs(remote);
+  };
+  const handlePart = () => {
+    const remote = nyJob.filter((job) => job.jobCategory === "Part Time");
+    setAppliedjobs(remote);
+  };
+  const handleHybrid = () => {
+    const remote = nyJob.filter((job) => job.jobCategory === "Hybrid");
     setAppliedjobs(remote);
   };
 
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
       <div
         className="hero"
         style={{
@@ -61,21 +73,12 @@ const AppliedJobs = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md py-12 z-20">
-            <h1 className="mb-5 text-5xl font-bold">Your Applied Job</h1>
+            <h1 className="mb-5 text-3xl md:text-4xl lg:text-5xl font-bold">Your Applied Job</h1>
           </div>
         </div>
       </div>
-      <div className="max-w-[1480px] mx-auto">
-        {isLoading ? (
-          <div className="min-h-screen flex justify-center items-center">
-            <span className="loading loading-infinity w-[50px] md:w-[100px] text-blue-400"></span>{" "}
-          </div>
-        ) : (
-          ""
-        )}
-        <div>
-          <div className="flex justify-center my-7">
-            <div className="dropdown">
+        <div className=" flex justify-center mt-7">
+        <div className="dropdown">
               <div tabIndex={0} role="button" className="btn m-1 bg-blue-300 text-lg text-white">
                 Filter By
                 <span className="text-xl font-bold">
@@ -92,10 +95,31 @@ const AppliedJobs = () => {
                 <li onClick={handleRemote}>
                   <a>Remote Job</a>
                 </li>
+                <li onClick={handleOn}>
+                  <a>On Site</a>
+                </li>
+                <li onClick={handlePart}>
+                  <a>Part Time</a>
+                </li>
+                <li onClick={handleHybrid}>
+                  <a>Hybrid</a>
+                </li>
               </ul>
             </div>
+        </div>
+      <div className="max-w-[1480px] mx-auto overflow-x-auto">
+        {isLoading ? (
+          <div className="min-h-screen flex justify-center items-center">
+            <span className="loading loading-infinity w-[50px] md:w-[100px] text-blue-400"></span>{" "}
           </div>
-          <table className="table">
+        ) : (
+          ""
+        )}
+        <div>
+          <div className="flex justify-center my-7">
+
+          </div>
+          <table className="table min-w-max">
             <thead>
               <tr>
                 <th className="text-xl">
@@ -163,11 +187,11 @@ const AppliedJobs = () => {
                   </td>
                   <td>
                     <button className=" btn btn-outline text-blue-300 ">
-                    <PDFDownloadLink document={<JobPDF job={job} />} fileName={`${job.jobTitle}.pdf`}>
-                      {({ blob, url, loading, error }) =>
-                        loading ? 'Loading document...' : 'Download PDF'
-                      }
-                    </PDFDownloadLink>
+                      <PDFDownloadLink document={<JobPDF job={job} />} fileName={`${job.jobTitle}.pdf`}>
+                        {({ blob, url, loading, error }) =>
+                          loading ? 'Loading document...' : 'Download PDF'
+                        }
+                      </PDFDownloadLink>
                     </button>
                   </td>
                 </tr>

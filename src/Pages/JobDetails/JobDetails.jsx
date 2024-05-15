@@ -103,7 +103,7 @@ const JobDetails = () => {
       <div className=" mb-[70px] max-w-[1480px] mt-7 mx-auto">
         <div className="py-5 bg-blue-50 my-2 rounded-xl">
           <div className="mb-2 flex items-center justify-between">
-            <h1 className=" text-5xl font-semibold p-3 ml-5">{jobTitle}</h1>
+            <h1 className=" md:text-2xl text-lg lg:text-5xl font-semibold p-3 ml-5">{jobTitle}</h1>
 
             <p
               className={`${
@@ -127,44 +127,44 @@ const JobDetails = () => {
               {jobCategory}
             </p>
           </div>
-          <div className=" w-[900px] h-[500px] flex mx-auto">
+          <div className=" px-2 max-w-[900px] max-h-[500px] flex mx-auto">
             <img
-              className=" w-full h-full rounded-xl"
+              className=" w-full rounded-xl"
               src={jobBannerImg}
               alt=""
             />
           </div>
         </div>
-        <div className=" grid grid-cols-5 gap-9 mx-12">
-          <div className=" col-span-3 border-blue-100 border-2 rounded-lg hover:shadow-lg">
-            <h1 className=" text-3xl bg-gray-50 p-3 font-semibold">
+        <div className=" grid lg:grid-cols-5 lg:gap-9 lg:mx-12">
+          <div className=" lg:col-span-3 m-2 border-blue-100 border-2 rounded-lg hover:shadow-lg">
+            <h1 className=" text-xl md:text-3xl bg-gray-50 p-3 font-semibold">
               Job Description
             </h1>
             <p className=" text-lg p-4">{jobDescription}</p>
           </div>
           <div className="  bg-blue-100 pb-4 rounded-xl col-span-2">
-            <h1 className=" rounded-t-xl text-3xl font-semibold p-3 bg-blue-200">
+            <h1 className=" rounded-t-xl text-2xl md:text-3xl font-semibold p-3 bg-blue-200">
               Overview
             </h1>
-            <h1 className=" underline text-2xl font-semibold text-center my-3">
+            <h1 className=" underline text-xl md:text-2xl font-semibold text-center my-3">
               {jobTitle}
             </h1>
             <div className=" flex items-center justify-between px-4 py-2">
               <div>
                 <div className=" flex items-center gap-1">
-                  <p className=" text-lg text-blue-500">
+                  <p className=" lg:text-lg text-blue-500">
                     <MdOutlineDateRange />
                   </p>
-                  <p className=" text-xl">
+                  <p className=" lg:text-xl">
                     Posted Date:{" "}
                     <span className=" font-semibold">{jobPostingDate}</span>
                   </p>
                 </div>
                 <div className=" mt-3 flex items-center gap-1">
-                  <p className=" text-lg text-blue-500">
+                  <p className=" lg:text-lg text-blue-500">
                     <MdOutlineDateRange />
                   </p>
-                  <p className=" text-xl">
+                  <p className=" lg:text-xl">
                     Deadline:{" "}
                     <span className=" font-semibold">
                       {applicationDeadline}
@@ -173,10 +173,10 @@ const JobDetails = () => {
                 </div>
               </div>
               <div className=" flex items-center gap-1">
-                <p className=" text-lg text-blue-500">
+                <p className=" lg:text-lg text-blue-500">
                   <FaPeopleGroup />
                 </p>
-                <p className=" text-xl">
+                <p className=" lg:text-xl">
                   Applied People: {jobApplicantsNumber}
                 </p>
               </div>

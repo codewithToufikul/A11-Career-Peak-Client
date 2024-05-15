@@ -92,31 +92,31 @@ const AllJobs = () => {
           <table className="table">
             <thead>
               <tr>
-                <th className=" text-xl ">
+                <th className=" text-lg lg:text-xl ">
                   <div className=" flex items-center gap-2">
-                    <p className=" text-2xl text-blue-500">
+                    <p className=" lg:text-2xl text-blue-500">
                       <PiHandbagSimpleFill />
                     </p>
                     <p>Job Title</p>
                   </div>
                 </th>
-                <th className=" text-xl flex items-center gap-2">
+                <th className="text-lg lg:text-xl flex items-center gap-2">
                   {" "}
-                  <p className=" text-xl text-blue-500">
+                  <p className="text-lg lg:text-xl text-blue-500">
                     <MdOutlineDateRange />
                   </p>
                   Posting Date
                 </th>
-                <th className=" text-xl">
+                <th className="text-lg lg:text-xl">
                   <div className=" flex items-center gap-2">
-                    <p className=" text-xl text-blue-500">
+                    <p className="text-lg lg:text-xl text-blue-500">
                       <MdOutlineDateRange />
                     </p>
                     <p>Deadline</p>
                   </div>
                 </th>
-                <th className=" text-xl">Salary range</th>
-                <th className=" text-xl">Category</th>
+                <th className="text-lg lg:text-xl">Salary range</th>
+                <th className="text-lg lg:text-xl">Category</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -130,7 +130,7 @@ const AllJobs = () => {
                         <p>
                           <GrStatusGoodSmall />
                         </p>
-                        <p className="font-bold text-2xl py-4">
+                        <p className="font-bold text-lg lg:text-2xl py-4">
                           {job.jobTitle}
                         </p>
                       </div>
@@ -138,24 +138,24 @@ const AllJobs = () => {
                   </td>
                   <td>
                     <p className=" bg-blue-100 w-fit p-1 px-3  rounded-full">
-                      <span className=" font-semibold text-lg">
+                      <span className=" font-semibold lg:text-lg">
                         {job.jobPostingDate}
                       </span>
                     </p>
                   </td>
                   <td>
                     <p className=" bg-red-100 w-fit p-1 px-3  rounded-full">
-                      <span className=" font-semibold text-lg">
+                      <span className=" font-semibold lg:text-lg">
                         {job.applicationDeadline}
                       </span>
                     </p>
                   </td>
                   <th>
                     <div className=" flex items-center gap-2">
-                      <p className=" text-xl">
+                      <p className="text-lg lg:text-xl">
                         <FaMoneyBill1Wave />
                       </p>
-                      <p className=" text-xl bg-green-50 p-1 px-2 rounded-full">
+                      <p className="lg:text-lg lg:text-xl bg-green-50 p-1 px-2 rounded-full">
                         ${job.salaryRange}
                       </p>
                     </div>
@@ -167,7 +167,7 @@ const AllJobs = () => {
                   </td>
                   <td></td>
                   <td>
-                    <Link onClick={handleViewDetails} to={`/jobdetails/${job._id}`} className=" btn btn-outline text-lg text-blue-300">
+                    <Link onClick={handleViewDetails} to={`/jobdetails/${job._id}`} className=" btn btn-outline lg:text-lg text-blue-300">
                       Details
                     </Link>
                   </td>
