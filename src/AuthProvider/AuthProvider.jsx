@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 const gitHubProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
@@ -52,8 +53,29 @@ const AuthProvider = ({children}) => {
     }
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth, currentUser=>{
+            const userEmail = currentUser?.email || users?.email;
+            const loggedUser = {email: userEmail};
             setUsers(currentUser)
             setLoading(false)
+            if(currentUser){
+                axios.post('https://career-peak-server.vercel.app/jwt', loggedUser,{
+                    withCredentials: true
+                })
+                .then(res=>{
+                    console.log('token response', res.data);
+                })
+            }
+            else{
+                axios.post('https://career-peak-server.vercel.app/logout', loggedUser,{
+                    withCredentials: true
+                })
+                .then(res => {
+
+                    console.log(res.data);
+
+                })
+            }
+
         });
         return()=>{
             unSubscribe();

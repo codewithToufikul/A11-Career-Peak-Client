@@ -22,7 +22,7 @@ if (isLoading) return <div className="min-h-screen flex justify-center items-cen
 if (isError) return <div>Error fetching data</div>;
   return (
     <div className=" relative">
-      <div className="sticky bg-blue-50 top-0 left-0 right-0">
+      <div className="sticky z-50 bg-blue-50 top-0 left-0 right-0">
         <Navbar></Navbar>
       </div>
       <Banner></Banner>

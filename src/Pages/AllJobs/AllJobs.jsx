@@ -21,7 +21,7 @@ const AllJobs = () => {
       queryKey: ["jobs"],
     });
     const getdata = async () => {
-      const { data } = await axios("http://localhost:5000/jobs");
+      const { data } = await axios("https://career-peak-server.vercel.app/jobs");
       setJobs(data)
       return data;
     };
@@ -130,7 +130,7 @@ const AllJobs = () => {
                         <p>
                           <GrStatusGoodSmall />
                         </p>
-                        <p className="font-bold text-lg lg:text-2xl py-4">
+                        <p className="font-bold  lg:text-2xl py-4">
                           {job.jobTitle}
                         </p>
                       </div>
@@ -138,14 +138,14 @@ const AllJobs = () => {
                   </td>
                   <td>
                     <p className=" bg-blue-100 w-fit p-1 px-3  rounded-full">
-                      <span className=" font-semibold lg:text-lg">
+                      <span className=" mg:font-semibold lg:text-lg">
                         {job.jobPostingDate}
                       </span>
                     </p>
                   </td>
                   <td>
                     <p className=" bg-red-100 w-fit p-1 px-3  rounded-full">
-                      <span className=" font-semibold lg:text-lg">
+                      <span className=" mg:font-semibold lg:text-lg">
                         {job.applicationDeadline}
                       </span>
                     </p>
@@ -155,7 +155,7 @@ const AllJobs = () => {
                       <p className="text-lg lg:text-xl">
                         <FaMoneyBill1Wave />
                       </p>
-                      <p className="lg:text-lg lg:text-xl bg-green-50 p-1 px-2 rounded-full">
+                      <p className="lg:text-lg  bg-green-50 p-1 px-2 rounded-full">
                         ${job.salaryRange}
                       </p>
                     </div>

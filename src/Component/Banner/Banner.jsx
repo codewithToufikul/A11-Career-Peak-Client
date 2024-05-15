@@ -1,4 +1,4 @@
-import bannerBg from "../../assets/bg-banner.svg";
+import bannerBg from "./assets/bg-banner.png";
 import { motion } from "framer-motion";
 import './style.css'
 

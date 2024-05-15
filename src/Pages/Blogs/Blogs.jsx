@@ -11,7 +11,7 @@ const Blogs = () => {
     queryKey: ["jobs"],
   });
   const getdata = async () => {
-    const { data } = await axios("http://localhost:5000/blogs");
+    const { data } = await axios("https://career-peak-server.vercel.app/blogs");
     setBlogs(data)
     return data;
   };

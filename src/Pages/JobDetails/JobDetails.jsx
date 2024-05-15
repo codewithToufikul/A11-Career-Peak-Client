@@ -36,7 +36,7 @@ const JobDetails = () => {
   });
 
   const getData = async () => {
-    const { data } = await axios(`http://localhost:5000/applyjob`);
+    const { data } = await axios(`https://career-peak-server.vercel.app/applyjob`);
     return data;
   };
 

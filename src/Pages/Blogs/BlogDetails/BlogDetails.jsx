@@ -29,9 +29,9 @@ const BlogDetails = () => {
           <div className="mb-2 flex items-center justify-between">
             <h1 className="text-3xl font-semibold p-3 ml-5">{title}</h1>
           </div>
-          <div className="w-[900px] h-[500px] flex mx-auto">
+          <div className="max-w-[900px] max-h-[500px] flex mx-auto">
             <img
-              className="w-full h-full rounded-xl"
+              className="w-full rounded-xl"
               src={blogimage}
               alt=""
             />
