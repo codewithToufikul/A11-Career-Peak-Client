@@ -63,7 +63,6 @@ const router = createBrowserRouter([
       {
         path: "/updatejob/:id",
         element: <PrivetRoute><UpdateJob></UpdateJob></PrivetRoute>,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/jobs/${params.id}`)
       },
       {
         path: "/blogs",
@@ -72,7 +71,6 @@ const router = createBrowserRouter([
       {
         path:"/blogdetail/:id",
         element: <BlogDetails></BlogDetails>,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/blogs/${params.id}`)
       }
     ],
   },

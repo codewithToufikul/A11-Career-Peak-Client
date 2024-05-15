@@ -2,17 +2,31 @@ import { useState } from "react";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useQuery } from "react-query";
+
+
+const fetchBlog = async (id) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/jobs/${id}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch blog');
+  }
+  return response.json();
+};
 
 const UpdateJob = () => {
   const navigete = useNavigate()
-    const job = useLoaderData()
-    const {_id} = job;
-    const [startDate, setStartDate] = useState(new Date());
-    const [applyDate, setApplyDate] = useState(new Date());
-    
+  const { id } = useParams();
+
+  const { data: job, isLoading, isError } = useQuery(['blog', id], () => fetchBlog(id));
+  if (isLoading) return <div className="min-h-screen flex justify-center items-center">
+  <span className="loading loading-infinity w-[50px] md:w-[100px] text-blue-400"></span>{" "}
+</div>;
+  if (isError) return <div>Error fetching blog</div>
+
+  const {_id} = job;
 
     const handleUpdateJob =  async event =>{
         event.preventDefault()
@@ -178,11 +192,7 @@ const UpdateJob = () => {
                                     placeholder="applied number"
                                     className="input input-bordered w-full"
                                   />
-                                {/* <ReactDatePicker
-  className="border-2 w-full py-3 px-5 rounded-lg"
-  selected={applyDate}
-  onChange={(date) => setApplyDate(date)}
-/> */}
+
                               </div>
                             </div>
                             <div className="md:flex md:mb-4">
@@ -201,12 +211,6 @@ const UpdateJob = () => {
                                     className="input input-bordered w-full"
                                   />
 
-                                {/* <ReactDatePicker
-  // selected={startDate}
-  onChange={(date) => setStartDate(date)}
-  className="input input-bordered w-full"
-  placeholderText={job.applicationDeadline}
-/> */}
                               </div>
                               <div className="form-control md:w-1/2 md:ml-4">
                                 <label className="label">

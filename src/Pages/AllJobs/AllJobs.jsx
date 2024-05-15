@@ -8,24 +8,23 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useQuery } from "react-query";
 
 const AllJobs = () => {
     const [jobs, setJobs] = useState([])
     const navigate = useNavigate()
     const {users} = useContext(AuthContext)
     const [search, setSearch] = useState('')
-    const apiUrl = import.meta.env.VITE_API_URL
-  useEffect(()=>{
-    const getData = async () => {
-      try {
-        const { data } = await axios(`${apiUrl}/jobs`);
-        setJobs(data);
-      } catch (error) {
-        console.error("Error occurred while fetching data:", error);
-      }
+    // const apiUrl = import.meta.env.VITE_API_URL
+    const { data: jobData = [], isLoading } = useQuery({
+      queryFn: () => getdata(),
+      queryKey: ["jobs"],
+    });
+    const getdata = async () => {
+      const { data } = await axios("http://localhost:5000/jobs");
+      setJobs(data)
+      return data;
     };
-    getData();
-  },[])
   const handleViewDetails = () => {
     if (!users) {
       toast.error('Please login first and view details!');
@@ -71,7 +70,13 @@ const AllJobs = () => {
           </div>
         </div>  
       <div className=" max-w-[1480px] mt-16 mx-auto">
-        
+      {isLoading ? (
+          <div className="min-h-screen flex justify-center items-center">
+            <span className="loading loading-infinity w-[50px] md:w-[100px] text-blue-400"></span>{" "}
+          </div>
+        ) : (
+          ""
+        )}
           <div className=" w-fit mx-auto">
             <div className=" flex items-center">
             <p className=" text-4xl text-blue-400"><FaMagnifyingGlass /></p>

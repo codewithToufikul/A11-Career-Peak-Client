@@ -6,50 +6,53 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
 const AddJob = () => {
-  const navigate = useNavigate()
-    const {users} = useContext(AuthContext);
-    const [startDate, setStartDate] = useState(new Date());
-    const [applyDate, setApplyDate] = useState(new Date());
-    
+  const navigate = useNavigate();
+  const { users } = useContext(AuthContext);
+  const [startDate, setStartDate] = useState(new Date());
+  const [applyDate, setApplyDate] = useState(new Date());
 
-    const handleAddJob =  async event =>{
-        event.preventDefault()
-        const form = event.target;
-        const title = form.title.value;
-        const jobCategory = form.jobCategory.value;
-        const salary = form.salary.value;
-        const description = form.description.value;
-        const email = form.email.value;
-        const name = form.name.value;
-        const photo = form.photo.value;
-        const applyNumber = form.applyNumber.value;
-        const postingDate = startDate.toISOString().split('T')[0];
-        const applyTime = applyDate.toISOString().split('T')[0];
-        const AddedJob = {
-          jobTitle: title ,
-          jobCategory: jobCategory,
-          salaryRange: salary,
-          jobDescription: description,
-          userEmail: email,
-          userName: name,
-          jobBannerImg: photo,
-          jobPostingDate: postingDate,
-          applicationDeadline: applyTime,
-          jobApplicantsNumber: applyNumber
-    
-        }
-        try{
-          const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jobs`, AddedJob)
-          console.log(data);
-          navigate('/myjobs')
-          toast.success('Successfully Added !')
-         
-      } catch (err) {
-          console.log(err);
-          toast.error('Added failed !')
-      }
+  const addJobMutation = useMutation((newJob) =>
+    axios.post(`${import.meta.env.VITE_API_URL}/jobs`, newJob)
+  );
+
+  const handleAddJob = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const title = form.title.value;
+    const jobCategory = form.jobCategory.value;
+    const salary = form.salary.value;
+    const description = form.description.value;
+    const email = form.email.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const applyNumber = form.applyNumber.value;
+    const postingDate = startDate.toISOString().split("T")[0];
+    const applyTime = applyDate.toISOString().split("T")[0];
+    const AddedJob = {
+      jobTitle: title,
+      jobCategory: jobCategory,
+      salaryRange: salary,
+      jobDescription: description,
+      userEmail: email,
+      userName: name,
+      jobBannerImg: photo,
+      jobPostingDate: postingDate,
+      applicationDeadline: applyTime,
+      jobApplicantsNumber: applyNumber,
+    };
+
+    try {
+      await addJobMutation.mutateAsync(AddedJob);
+      console.log("Job added successfully");
+      navigate("/myjobs");
+      toast.success("Successfully Added !");
+    } catch (err) {
+      console.log(err);
+      toast.error("Added failed !");
     }
+  };
   return (
     <div>
       <Navbar></Navbar>
@@ -136,7 +139,6 @@ const AddJob = () => {
               </label>
             </div>
           </div>
-          {/* form supplier row */}
           <div className="md:flex md:mb-4">
             <div className="form-control md:w-1/2">
               <label className="label">

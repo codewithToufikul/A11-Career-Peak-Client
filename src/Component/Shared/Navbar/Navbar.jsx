@@ -42,7 +42,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive, isPending }) =>
           isActive
-            ? " text-lg font-bold text-[#378CE7]"
+            ? " text-lg font-bold text-[#378CE7] border-b-4 border-blue-300"
             : isPending
             ? "pending"
             : "text-lg mr-2 hover:underline font-semibold "
@@ -56,7 +56,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive, isPending }) =>
           isActive
-            ? " text-lg font-bold text-[#378CE7]"
+            ? " text-lg font-bold text-[#378CE7] border-b-4 border-blue-300"
             : isPending
             ? "pending"
             : "text-lg mr-2 hover:underline font-semibold"
@@ -72,7 +72,7 @@ const Navbar = () => {
      <NavLink
        className={({ isActive, isPending }) =>
          isActive
-           ? " text-lg font-bold text-[#378CE7]"
+           ? " text-lg font-bold text-[#378CE7] border-b-4 border-blue-300"
            : isPending
            ? "pending"
            : "text-lg mr-2 hover:underline font-semibold"
@@ -88,7 +88,7 @@ const Navbar = () => {
      <NavLink
        className={({ isActive, isPending }) =>
          isActive
-           ? " text-lg font-bold text-[#378CE7]"
+           ? " text-lg font-bold text-[#378CE7] border-b-4 border-blue-300"
            : isPending
            ? "pending"
            : "text-lg mr-2 hover:underline font-semibold"
@@ -104,7 +104,7 @@ const Navbar = () => {
      <NavLink
        className={({ isActive, isPending }) =>
          isActive
-           ? " text-lg font-bold text-[#378CE7]"
+           ? " text-lg font-bold text-[#378CE7] border-b-4 border-blue-300"
            : isPending
            ? "pending"
            : "text-lg mr-2 hover:underline font-semibold"
@@ -119,7 +119,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive, isPending }) =>
           isActive
-            ? " text-lg font-bold text-[#378CE7]"
+            ? " text-lg font-bold text-[#378CE7] border-b-4 border-blue-300"
             : isPending
             ? "pending"
             : " text-lg mr-2 hover:underline  font-semibold"

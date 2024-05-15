@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Component/Shared/Navbar/Navbar";
 import BlogCard from "./BlogCard";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/blogs')
-    .then(res=> res.json())
-    .then(data=>{
-        setBlogs(data)
-    })
-  }, []);
+  const { isLoading } = useQuery({
+    queryFn: () => getdata(),
+    queryKey: ["jobs"],
+  });
+  const getdata = async () => {
+    const { data } = await axios("http://localhost:5000/blogs");
+    setBlogs(data)
+    return data;
+  };
   return (
     <div>
       <Navbar></Navbar>
@@ -34,7 +38,13 @@ const Blogs = () => {
         </div>
       </div>
       <div className=" max-w-[1480px] mx-auto">
-
+      {isLoading ? (
+          <div className="min-h-screen flex justify-center items-center">
+            <span className="loading loading-infinity w-[50px] md:w-[100px] text-blue-400"></span>{" "}
+          </div>
+        ) : (
+          ""
+        )}
         <div className=" grid  grid-cols-1  md:grid-cols-2 my-10 gap-16">
             {
                 blogs.map(blog=> <BlogCard key={blog._id}  blog={blog}></BlogCard>)
