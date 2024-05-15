@@ -104,7 +104,7 @@ const AddJob = () => {
                 </option>
                 <option> On Site</option>
                 <option>Remote</option>
-                <option> Part-Time</option>
+                <option> Part Time</option>
                 <option>Hybrid</option>
               </select>
             </div>

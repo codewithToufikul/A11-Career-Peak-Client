@@ -122,30 +122,30 @@ const AppliedJobs = () => {
           <table className="table min-w-max">
             <thead>
               <tr>
-                <th className="text-xl">
+                <th className="md:text-xl text-lg">
                   <div className="flex items-center gap-2">
-                    <p className="text-2xl text-blue-500">
+                    <p className="md:text-2xl text-blue-500">
                       <PiHandbagSimpleFill />
                     </p>
                     <p>Job Title</p>
                   </div>
                 </th>
-                <th className="text-xl flex items-center gap-2">
-                  <p className="text-xl text-blue-500">
+                <th className="md:text-xl text-lg flex items-center gap-2">
+                  <p className="md:text-xl text-blue-500">
                     <MdOutlineDateRange />
                   </p>
                   Posting Date
                 </th>
-                <th className="text-xl">
+                <th className="md:text-xl text-lg">
                   <div className="flex items-center gap-2">
-                    <p className="text-xl text-blue-500">
+                    <p className="md:text-xl text-blue-500">
                       <MdOutlineDateRange />
                     </p>
                     <p>Deadline</p>
                   </div>
                 </th>
-                <th className="text-xl">Salary range</th>
-                <th className="text-xl">Category</th>
+                <th className="md:text-xl text-lg">Salary range</th>
+                <th className="md:text-xl text-lg">Category</th>
                 <th></th>
               </tr>
             </thead>
@@ -158,18 +158,18 @@ const AppliedJobs = () => {
                         <p>
                           <GrStatusGoodSmall />
                         </p>
-                        <p className="font-bold text-2xl py-4">{job.jobTitle}</p>
+                        <p className="font-bold md:text-2xl py-4">{job.jobTitle}</p>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <p className="bg-blue-100 w-fit p-1 px-3 rounded-full">
-                      <span className="font-semibold text-lg">{job.jobPostingDate}</span>
+                    <p className="bg-blue-100 w-fit p-1 md:px-3 rounded-full">
+                      <span className="font-semibold md:text-lg">{job.jobPostingDate}</span>
                     </p>
                   </td>
                   <td>
-                    <p className="bg-red-100 w-fit p-1 px-3 rounded-full">
-                      <span className="font-semibold text-lg">{job.applicationDeadline}</span>
+                    <p className="bg-red-100 w-fit p-1 md:px-3 rounded-full">
+                      <span className="font-semibold md:text-lg">{job.applicationDeadline}</span>
                     </p>
                   </td>
                   <td>
@@ -177,7 +177,7 @@ const AppliedJobs = () => {
                       <p className="text-xl">
                         <FaMoneyBill1Wave />
                       </p>
-                      <p className="text-xl bg-green-50 p-1 px-2 rounded-full">${job.salaryRange}</p>
+                      <p className="md:text-xl bg-green-50 p-1 md:px-2 rounded-full">${job.salaryRange}</p>
                     </div>
                   </td>
                   <td>

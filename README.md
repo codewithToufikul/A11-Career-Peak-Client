@@ -19,8 +19,13 @@ Five bullet points features and characteristics for this website :-
 
 In this website used npm package name:-
 
-1.React swiper slider
+
+1.React Tanstack query
 
 2.React to pdf
 
 3.React farmer motion
+
+4.React swiper slider
+
+5.React Date Pecker

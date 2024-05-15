@@ -78,7 +78,7 @@ const UpdateJob = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md py-24 z-20">
-                <h1 className="mb-5 text-5xl font-bold">Update Your Job</h1>
+                <h1 className="mb-5 text-3xl md:text-4xl lg:text-5xl font-bold">Update Your Job</h1>
                 <p className="mb-5">
                 </p>
               </div>
@@ -125,7 +125,7 @@ const UpdateJob = () => {
                                   </option>
                                   <option> On Site</option>
                                   <option>Remote</option>
-                                  <option> Part-Time</option>
+                                  <option> Part Time</option>
                                   <option>Hybrid</option>
                                 </select>
                               </div>

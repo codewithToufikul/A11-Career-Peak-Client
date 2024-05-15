@@ -99,6 +99,7 @@ const JobDetails = () => {
       );
       console.log(data);
       toast.success("Job application successful");
+      toast.success("Refresh The Page");
 
       await queryClient.invalidateQueries("jobs");
     } catch (err) {
