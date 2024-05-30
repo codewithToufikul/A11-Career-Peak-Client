@@ -18,6 +18,7 @@ import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import Blogs from "./Pages/Blogs/Blogs";
 import BlogDetails from "./Pages/Blogs/BlogDetails/BlogDetails";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import AddReview from "./Pages/AddReview/AddReview";
 
 const queryClient = new QueryClient();
 
@@ -65,8 +66,8 @@ const router = createBrowserRouter([
         element: <PrivetRoute><UpdateJob></UpdateJob></PrivetRoute>,
       },
       {
-        path: "/blogs",
-        element: <Blogs></Blogs>,
+        path: '/review',
+        element: <PrivetRoute><AddReview></AddReview></PrivetRoute>
       },
       {
         path:"/blogdetail/:id",

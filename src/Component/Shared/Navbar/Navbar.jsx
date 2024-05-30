@@ -124,9 +124,9 @@ const Navbar = () => {
             ? "pending"
             : " text-lg mr-2 hover:underline  font-semibold"
         }
-        to="/blogs"
+        to="/review"
       >
-       Blogs
+       Give a review
       </NavLink>
     </li>
   </>
